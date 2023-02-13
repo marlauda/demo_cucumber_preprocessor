@@ -6,14 +6,6 @@ import { webpackConfig } from './webpack.config';
 export const setupProcessorsAndPlugins: Cypress.ResolvedConfigOptions['setupNodeEvents'] = async (on, config) => {
   await addCucumberPreprocessorPlugin(on, config);
 
-  on('task', {
-    // ONLY FOR DEBUG PURPOSE
-    displayLog: (log: string) => {
-      console.log(log);
-      return true;
-    }
-  });
-
   // use a Webpack loader to process feature files (cucumber's files)
   const options = {
     webpackOptions: webpackConfig(config)
